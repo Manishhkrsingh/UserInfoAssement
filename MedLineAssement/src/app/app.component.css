@@ -1,0 +1,17 @@
+.footer{
+    clear:both;
+    padding: 17px 41px;
+    margin: auto;
+    background-color: blue;
+}
+
+.footer p {
+    color:whitesmoke;
+    text-align: center;
+}
+
+.base-line{
+    border-bottom: 1px solid #00000047;
+    clear: both;
+    margin-bottom: 25px;
+}

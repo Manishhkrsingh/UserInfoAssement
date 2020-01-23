@@ -15,6 +15,7 @@
 
 .position-next{
     float:right;
+    margin: 23px 0px;
 }
 .no-input{
     border: 1px solid red;
@@ -28,10 +29,13 @@
 .value{
     display: inline-block;
     width: 50%;
-    /* padding-left: 10px; */
     padding-bottom: 10px;
 }
 .atCenter{
     margin-left: 40%;
 
+}
+label{
+    font-size: smaller;
+    font-weight: 500;
 }

@@ -1,30 +1,25 @@
-
-<div class="container-fluid">
-    <div >
-        <img class="header-img"src="./assets/images/medline-logo-105.png">
-    </div>
     <div class="form-heading">
         <p>MEDLINE.COM</p>
         <h3> Account Registration</h3>
     </div>
-    <div class="">
+    <div class="base-line">
         <p class="userInfo">USER INFORMATION</p>
         <form #form="ngForm" (ngSubmit)="onSubmit(form,template)">
-            <div [hidden]="!form.submitted || form.valid" class="alert alert-danger">Please review errors.</div>
+            <div [hidden]="!form.submitted || form.valid || formSubmitted" class="alert alert-danger">Please review errors.</div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label name="firstName">FIRST NAME*</label>
                         <input id="firstName" name="firstName" placeholder="" class="form-control"
-                         #firstNameField="ngModel" ngModel required [class.no-input]="form.submitted && firstNameField.invalid"/>
-                        <div [hidden]="!form.submitted || firstNameField.valid" class="alert alert-danger">First Name is a required field.</div>
+                         #firstNameField="ngModel" [(ngModel)]="userInfo.firstName" required [class.no-input]="form.submitted && firstNameField.invalid && !formSubmitted"/>
+                        <div [hidden]="!form.submitted || firstNameField.valid || formSubmitted" class="alert alert-danger">First Name is a required field.</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label name="lastName">LAST NAME*</label>
-                        <input id="lastName" name="lastName" placeholder="" class="form-control" #lastNameField="ngModel" ngModel required [class.no-input]="form.submitted && lastNameField.invalid">
-                        <div [hidden]="!form.submitted || lastNameField.valid" class="alert alert-danger">Last Name is a required field.</div>
+                        <input id="lastName" name="lastName" placeholder="" class="form-control" #lastNameField="ngModel" [(ngModel)]="userInfo.lastName" required [class.no-input]="form.submitted && lastNameField.invalid && !formSubmitted">
+                        <div [hidden]="!form.submitted || lastNameField.valid  || formSubmitted" class="alert alert-danger">Last Name is a required field.</div>
                     </div>
                 </div>
             </div>
@@ -34,8 +29,8 @@
                     <div class="col-md-8 col-sm-6">
                         <div class="form-group">
                             <label name="phone">PHONE*</label>
-                            <input id="phone" name="phone" placeholder="" class="form-control" #phoneField="ngModel" ngModel required [class.no-input]="form.submitted && phoneField.invalid"/>
-                            <div [hidden]="!form.submitted || phoneField.valid" class="alert alert-danger">Phone is a required field.</div>
+                            <input id="phone" name="phone" placeholder="" class="form-control" #phoneField="ngModel" [(ngModel)]="userInfo.phone" required [class.no-input]="form.submitted && phoneField.invalid && !formSubmitted && !formSubmitted"/>
+                            <div [hidden]="!form.submitted || phoneField.valid ||formSubmitted" class="alert alert-danger">Phone is a required field.</div>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6">
@@ -53,17 +48,22 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label name="email">EMAIL*</label>
-                    <input id="email" name="email" placeholder="" class="form-control" #emailField="ngModel" ngModel required [class.no-input]="form.submitted && emailField.invalid"/>
-                    <div [hidden]="!form.submitted || emailField.valid" class="alert alert-danger">Email is a required field.</div>
+                    <input id="email" name="email" placeholder="" class="form-control" #emailField="ngModel" [(ngModel)]="userInfo.mail" required [class.no-input]="form.submitted && emailField.invalid && !formSubmitted"/>
+                    <div [hidden]="!form.submitted || emailField.valid ||formSubmitted" class="alert alert-danger">Email is a required field.</div>
                 </div>
             </div>
         </div>
-        <div>
-            <button type="submit" class='btn btn-success position-next'>NEXT</button>
+        <div class="position-next">
+            <button type="submit" class='btn btn-success '>NEXT</button>
         </div>
+        
         </form>
 
-    </div>
+        </div>
+    
+
+    
+
 
     <ng-template #template>
         <div class="modal-header">
@@ -79,15 +79,15 @@
                   <div >
                       <div>
                             <span class="heading">User Name:</span>
-                            <span  class="value">{{form.value.firstName}}  {{form.value.lastName}}</span>
+                            <span  class="value">{{userInfo.firstName}}  {{userInfo.lastName}}</span>
                      </div>
                      <div>
                         <span class="heading">Email:</span>
-                        <span  class="value">{{form.value.email}}</span>
+                        <span  class="value">{{userInfo.mail}}</span>
                     </div>
                     <div>
                         <span class="heading">Phone:</span>
-                        <span  class="value">{{form.value.phone}}</span>
+                        <span  class="value">{{userInfo.phone}}</span>
                     </div>
                     <div class="atCenter">
                         <button class="btn btn-success "   (click)="modalRef.hide()">OK</button>
